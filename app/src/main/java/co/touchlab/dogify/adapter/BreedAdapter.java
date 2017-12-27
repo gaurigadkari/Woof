@@ -4,13 +4,13 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
-import com.squareup.picasso.Picasso;
+import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import co.touchlab.dogify.models.Breed;
 import co.touchlab.dogify.R;
+import co.touchlab.dogify.models.Breed;
 
 /**
  * Created by Gauri Gadkari on 12/21/17.
@@ -29,9 +29,9 @@ public class BreedAdapter extends RecyclerView.Adapter<ViewHolder> {
     public void onBindViewHolder(ViewHolder holder, int position) {
         Breed breed = breeds.get(position);
         holder.nameText.setText(breed.getName());
-        Picasso.with(holder.breedImage.getContext())
+        Glide.with(holder.breedImage.getContext())
                 .load(breed.getImageURL())
-                .fit()
+                .placeholder(R.drawable.dog_placeholder)
                 .centerCrop()
                 .into(holder.breedImage);
     }

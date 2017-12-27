@@ -33,10 +33,10 @@ import io.reactivex.schedulers.Schedulers;
  * A simple {@link Fragment} subclass.
  */
 public class BreedListFragment extends Fragment implements Injectable {
-    RecyclerView breedRecyclerView;
-    BreedAdapter adapter = new BreedAdapter();
-    BreedListViewModel breedListViewModel;
-    ProgressBar spinner;
+    private RecyclerView breedRecyclerView;
+    private BreedAdapter adapter = new BreedAdapter();
+    private BreedListViewModel breedListViewModel;
+    private ProgressBar spinner;
     FragmentBreedListBinding binding;
     @Inject
     ViewModelProvider.Factory viewModelFactory;
@@ -70,7 +70,7 @@ public class BreedListFragment extends Fragment implements Injectable {
                     public void onError(Throwable e) {
                         Snackbar.make(breedRecyclerView, "Oops! Something went wrong", Snackbar.LENGTH_LONG)
                                 .show();
-                        Log.d("TAG", e.getMessage().toString());
+                        Log.d("TAG", e.getMessage());
                         showSpinner(false);
                     }
 
@@ -100,8 +100,7 @@ public class BreedListFragment extends Fragment implements Injectable {
     }
 
     public static BreedListFragment newInstance() {
-        BreedListFragment breedListFragment = new BreedListFragment();
-        return breedListFragment;
+        return new BreedListFragment();
     }
 
     private void showSpinner(Boolean show) {

@@ -6,5 +6,4 @@ package co.touchlab.dogify.util;
 
 public class Constant {
     public static final String REST_API_URL = "https://dog.ceo/api/";
-    public static final String IMAGE_BASER_URL = "https://www.metaweather.com/static/img/weather/png/";
 }

@@ -13,7 +13,7 @@ import io.reactivex.Observable;
 
 @Singleton
 public class BreedRepository {
-    private DogService dogService;
+    private final DogService dogService;
 
     @Inject
     BreedRepository(DogService dogService) {
@@ -22,17 +22,13 @@ public class BreedRepository {
 
     public Observable<Breed> loadBreed() {
         return dogService.getBreeds()
-                .flatMap(nameResult -> {
-                    return Observable.just(nameResult.getMessage());
-                })
+                .flatMap(nameResult -> Observable.just(nameResult.getMessage()))
                 .flatMapIterable(listOfBreeds -> listOfBreeds)
-                .flatMap(breedName -> {
-                    return dogService.getImage(breedName);
-                })
+                .flatMap(breedName -> dogService.getImage(breedName))
                 .flatMap(imageResult -> {
                     Breed breed = new Breed();
                     breed.setImageURL(imageResult.getMessage());
-                    String[] urlParts = imageResult.getMessage().split("-|\\/");
+                    String[] urlParts = imageResult.getMessage().split("-|/");
                     String breedName = urlParts[5];
                     breed.setName(breedName);
                     return Observable.just(breed);

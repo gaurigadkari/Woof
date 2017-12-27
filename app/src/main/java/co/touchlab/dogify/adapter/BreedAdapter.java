@@ -17,7 +17,7 @@ import co.touchlab.dogify.models.Breed;
  */
 
 public class BreedAdapter extends RecyclerView.Adapter<ViewHolder> {
-    List<Breed> breeds = new ArrayList<>();
+    private List<Breed> breeds = new ArrayList<>();
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -31,7 +31,7 @@ public class BreedAdapter extends RecyclerView.Adapter<ViewHolder> {
         holder.nameText.setText(breed.getName());
         Glide.with(holder.breedImage.getContext())
                 .load(breed.getImageURL())
-                .placeholder(R.drawable.dog_placeholder)
+                .placeholder(R.drawable.placeholder)
                 .centerCrop()
                 .into(holder.breedImage);
     }

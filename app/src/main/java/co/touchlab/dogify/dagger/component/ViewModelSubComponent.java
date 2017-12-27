@@ -1,7 +1,7 @@
 package co.touchlab.dogify.dagger.component;
 
-/**
- * Created by Gauri Gadkari on 12/21/17.
+/*
+  Created by Gauri Gadkari on 12/21/17.
  */
 
 import co.touchlab.dogify.view.BreedListViewModel;

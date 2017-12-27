@@ -1,44 +1,24 @@
 package co.touchlab.dogify;
 
 import android.databinding.DataBindingUtil;
-import android.os.AsyncTask;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.view.View;
-import android.widget.FrameLayout;
-import android.widget.ProgressBar;
-
-import java.io.IOException;
-import java.lang.ref.WeakReference;
-import java.util.Collections;
-import java.util.List;
 
 import javax.inject.Inject;
 
-import co.touchlab.dogify.adapter.BreedAdapter;
 import co.touchlab.dogify.databinding.ActivityMainBinding;
-import co.touchlab.dogify.models.Breed;
-import co.touchlab.dogify.models.ImageResult;
-import co.touchlab.dogify.models.NameResult;
 import co.touchlab.dogify.view.BreedListFragment;
 import dagger.android.AndroidInjector;
 import dagger.android.DispatchingAndroidInjector;
 import dagger.android.support.HasSupportFragmentInjector;
-import okhttp3.OkHttpClient;
-import okhttp3.logging.HttpLoggingInterceptor;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 
 public class MainActivity extends AppCompatActivity implements HasSupportFragmentInjector {
 
     ActivityMainBinding binding;
-    FragmentManager fragmentManager;
-    BreedListFragment breedListFragment;
+    private FragmentManager fragmentManager;
+    private BreedListFragment breedListFragment;
     private static final String BREED_LIST_FRAGMENT = "breed_list_fragment";
     @Inject
     DispatchingAndroidInjector<Fragment> dispatchingAndroidInjector;

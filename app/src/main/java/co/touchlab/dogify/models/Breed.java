@@ -20,15 +20,6 @@ public class Breed {
         this.imageURL = imageURL;
     }
 
-    public Breed(String name, String url) {
-        this.name = name;
-        this.imageURL = url;
-    }
-
-    public Breed(String name) {
-        this.name = name;
-    }
-
     public Breed() {
     }
 

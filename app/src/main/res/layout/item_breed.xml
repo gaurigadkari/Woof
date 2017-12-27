@@ -10,7 +10,8 @@
         android:layout_width="156dp"
         android:layout_height="156dp"
         android:layout_centerHorizontal="true"
-        tools:src="@android:color/darker_gray" />
+        tools:src="@android:color/darker_gray"
+        android:contentDescription="@string/dog_breed_image" />
 
     <TextView
         android:id="@+id/name"

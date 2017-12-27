@@ -6,9 +6,11 @@ import android.arch.lifecycle.ViewModelProviders;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,7 +18,6 @@ import android.widget.ProgressBar;
 
 import javax.inject.Inject;
 
-import co.touchlab.dogify.DogService;
 import co.touchlab.dogify.R;
 import co.touchlab.dogify.adapter.BreedAdapter;
 import co.touchlab.dogify.dagger.utility.Injectable;
@@ -24,6 +25,7 @@ import co.touchlab.dogify.databinding.FragmentBreedListBinding;
 import co.touchlab.dogify.models.Breed;
 import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
 
@@ -38,6 +40,7 @@ public class BreedListFragment extends Fragment implements Injectable {
     FragmentBreedListBinding binding;
     @Inject
     ViewModelProvider.Factory viewModelFactory;
+    private final CompositeDisposable compositeDisposable = new CompositeDisposable();
 
     public BreedListFragment() {
         // Required empty public constructor
@@ -53,6 +56,7 @@ public class BreedListFragment extends Fragment implements Injectable {
                 .subscribe(new Observer<Breed>() {
                     @Override
                     public void onSubscribe(Disposable d) {
+                        compositeDisposable.add(d);
                         adapter.clear();
                         showSpinner(true);
                     }
@@ -64,6 +68,9 @@ public class BreedListFragment extends Fragment implements Injectable {
 
                     @Override
                     public void onError(Throwable e) {
+                        Snackbar.make(breedRecyclerView, "Oops! Something went wrong", Snackbar.LENGTH_LONG)
+                                .show();
+                        Log.d("TAG", e.getMessage().toString());
                         showSpinner(false);
                     }
 
@@ -99,5 +106,11 @@ public class BreedListFragment extends Fragment implements Injectable {
 
     private void showSpinner(Boolean show) {
         spinner.setVisibility(show ? View.VISIBLE : View.GONE);
+    }
+
+    @Override
+    public void onDestroy() {
+        //compositeDisposable.dispose();
+        super.onDestroy();
     }
 }

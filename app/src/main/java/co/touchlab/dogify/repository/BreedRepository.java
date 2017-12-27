@@ -1,13 +1,10 @@
 package co.touchlab.dogify.repository;
 
-import android.util.Log;
-
 import javax.inject.Inject;
 import javax.inject.Singleton;
 
 import co.touchlab.dogify.DogService;
 import co.touchlab.dogify.models.Breed;
-import co.touchlab.dogify.models.ImageResult;
 import io.reactivex.Observable;
 
 /**
@@ -35,7 +32,7 @@ public class BreedRepository {
                 .flatMap(imageResult -> {
                     Breed breed = new Breed();
                     breed.setImageURL(imageResult.getMessage());
-                    String[] urlParts = imageResult.getMessage().split("/");
+                    String[] urlParts = imageResult.getMessage().split("-|\\/");
                     String breedName = urlParts[5];
                     breed.setName(breedName);
                     return Observable.just(breed);

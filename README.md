@@ -18,3 +18,9 @@ The following **additional** features are implemented:
 * [x] Fixed lint issues
 * [x] To optimize performance, observable is returning a single Breed object at a time instead of the entire list
 * [x] Improved the user interface through styling and coloring.
+
+## Video Walkthrough
+
+Here's a walkthrough of implemented user stories:
+
+![Video Walkthrough](woof.gif)
